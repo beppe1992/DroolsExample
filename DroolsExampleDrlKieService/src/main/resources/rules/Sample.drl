@@ -1,0 +1,19 @@
+package DroolsExampleWithDrl;
+ 
+import com.sample.drl.pojo.*;
+ 
+rule "Hello World"
+    when
+        m : Message( status == Message.HELLO, myMessage : message )
+    then
+        m.setMessage( "Goodbye cruel world" );
+        m.setStatus( Message.GOODBYE );
+        update( m );
+end
+
+rule "GoodBye"
+    when
+        Message( status == Message.GOODBYE, myMessage : message )
+    then
+        System.out.println("Stampa messaggio dalla regola " +  myMessage);
+end
