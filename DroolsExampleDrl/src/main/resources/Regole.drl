@@ -1,0 +1,98 @@
+package DroolsExample;
+//generated from Decision Table
+import com.sample.drl.pojo.*;
+// rule values at C11, header at C6
+rule "Regola_11"
+	when
+		input:InputDomande(age >= 18, age <= 45, gender == "LOW", rispostaAccettate in ("1",  "3"), dataAttivazioneDomanda >  '1-Sep-14')
+	then
+		input.setRisposta("RISPOSTA 1");
+end
+
+// rule values at C12, header at C6
+rule "Regola_12"
+	when
+		input:InputDomande(age >= 18, age <= 24, gender == "MED", rispostaAccettate in ("1", "2"), dataAttivazioneDomanda >  '2-Sep-14')
+	then
+		input.setRisposta("RISPOSTA 2");
+end
+
+// rule values at C13, header at C6
+rule "Regola_13"
+	when
+		input:InputDomande(age >= 18, age <= 33, gender == "MED", rispostaAccettate in ("1"), dataAttivazioneDomanda >  '3-Sep-14')
+	then
+		input.setRisposta("RISPOSTA 3");
+end
+
+// rule values at C14, header at C6
+rule "Regola_14"
+	when
+		input:InputDomande(age >= 18, age <= 56, gender == "LOW", rispostaAccettate in ("3"), dataAttivazioneDomanda >  '4-Sep-14')
+	then
+		input.setRisposta("RISPOSTA 4");
+end
+
+// rule values at C15, header at C6
+rule "Regola_15"
+	when
+		input:InputDomande(age >= 11, age <= 24, gender == "LOW", rispostaAccettate in ("2"), dataAttivazioneDomanda >  '5-Sep-14')
+	then
+		input.setRisposta("RISPOSTA 5");
+end
+
+// rule values at C16, header at C6
+rule "Regola_16"
+	when
+		input:InputDomande(age >= 18, age <= 24, gender == "MED", rispostaAccettate in ("2", "3"), dataAttivazioneDomanda >  '6-Sep-14')
+	then
+		input.setRisposta("RISPOSTA 6");
+end
+
+// rule values at C17, header at C6
+rule "Regola_17"
+	when
+		input:InputDomande(age >= 18, age <= 77, gender == "HIGH", rispostaAccettate in ("1",  "3"), dataAttivazioneDomanda >  '7-Sep-14')
+	then
+		input.setRisposta("RISPOSTA 7");
+end
+
+// rule values at C18, header at C6
+rule "Regola_18"
+	when
+		input:InputDomande(age >= 18, age <= 22, gender == "HIGH", rispostaAccettate in ("1", "2"), dataAttivazioneDomanda >  '8-Sep-14')
+	then
+		input.setRisposta("RISPOSTA 8");
+end
+
+// rule values at C19, header at C6
+rule "Regola_19"
+	when
+		input:InputDomande(age >= 25, age <= 36, gender == "MED", rispostaAccettate in ("1"), dataAttivazioneDomanda >  '9-Sep-14')
+	then
+		input.setRisposta("RISPOSTA 9");
+end
+
+// rule values at C20, header at C6
+rule "Regola_20"
+	when
+		input:InputDomande(age >= 25, age <= 89, gender == "HIGH", rispostaAccettate in ("3"), dataAttivazioneDomanda >  '11-Sep-14')
+	then
+		input.setRisposta("RISPOSTA 10");
+end
+
+// rule values at C21, header at C6
+rule "Regola_21"
+	when
+		input:InputDomande(age >= 25, age <= 77, gender == "LOW", rispostaAccettate in ("2"), dataAttivazioneDomanda >  '11-Sep-14')
+	then
+		input.setRisposta("RISPOSTA 11");
+end
+
+// rule values at C22, header at C6
+rule "Regola_22"
+	when
+		input:InputDomande(age >= 25, age <= 11, gender == "MED", rispostaAccettate in ("2", "3"), dataAttivazioneDomanda >  '12-Sep-14')
+	then
+		input.setRisposta("RISPOSTA 12");
+end
