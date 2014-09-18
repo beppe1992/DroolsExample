@@ -2,15 +2,15 @@ package com.sample.drl;
 
 import java.util.Date;
 
-import org.kie.api.io.ResourceType;
-import org.kie.internal.KnowledgeBase;
-import org.kie.internal.KnowledgeBaseFactory;
-import org.kie.internal.builder.KnowledgeBuilder;
-import org.kie.internal.builder.KnowledgeBuilderError;
-import org.kie.internal.builder.KnowledgeBuilderErrors;
-import org.kie.internal.builder.KnowledgeBuilderFactory;
-import org.kie.internal.io.ResourceFactory;
-import org.kie.internal.runtime.StatefulKnowledgeSession;
+import org.drools.KnowledgeBase;
+import org.drools.KnowledgeBaseFactory;
+import org.drools.builder.KnowledgeBuilder;
+import org.drools.builder.KnowledgeBuilderError;
+import org.drools.builder.KnowledgeBuilderErrors;
+import org.drools.builder.KnowledgeBuilderFactory;
+import org.drools.builder.ResourceType;
+import org.drools.io.ResourceFactory;
+import org.drools.runtime.StatefulKnowledgeSession;
 
 import com.sample.drl.pojo.InputDomande;
 
@@ -74,7 +74,7 @@ public class ProcessTest {
 
 		kbuilder.add(ResourceFactory.newClassPathResource("Regole.drl"),
 				ResourceType.DRL);
-		
+
 		// L'oggetto KnowledgeBuilderErrors contiene una collezione di tipi di
 		// errore.
 		KnowledgeBuilderErrors errors = kbuilder.getErrors();
