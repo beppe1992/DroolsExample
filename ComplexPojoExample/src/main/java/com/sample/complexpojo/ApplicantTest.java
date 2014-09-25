@@ -11,7 +11,9 @@ import org.drools.compiler.PackageBuilder;
 import org.drools.decisiontable.InputType;
 import org.drools.decisiontable.SpreadsheetCompiler;
 
+import com.sample.complexpojo.pojo.DatiContraente;
 import com.sample.complexpojo.pojo.InputCalcolaPremio;
+import com.sample.complexpojo.pojo.Sconto;
 
 
 /**
@@ -39,21 +41,21 @@ public class ApplicantTest {
 					workingMemory);
 			logger.setFileName("C:/drools-audit");
 
-			// Istanzio l'oggetto pojo che verr� utilizzato nelle regole
+			// Istanzio l'oggetto pojo che verrà utilizzato nelle regole
 			InputCalcolaPremio input = new InputCalcolaPremio();
-			
+			input.setDatiContraente(new DatiContraente());
+			input.setSconto(new Sconto());
+			input.getDatiContraente().setEtaContraente(40);
+			input.getDatiContraente().setNominativo("PIPPO");
+			input.getDatiContraente().setTipoCliente("DIPENDENTI");
+			input.setNumeroGaranziePolizza(2);
 
 			workingMemory.insert(input);
 			workingMemory.fireAllRules();
 
-			//System.out.println(input.getRisposta());
+			System.out.println(input.getSconto().getPercSconto());
+			System.out.println(input.getSconto().getTipoSconto());
 
-			input = new InputCalcolaPremio();
-			
-			workingMemory.insert(input);
-			workingMemory.fireAllRules();
-
-			//System.out.println(input.getRisposta());
 
 			logger.writeToDisk();
 

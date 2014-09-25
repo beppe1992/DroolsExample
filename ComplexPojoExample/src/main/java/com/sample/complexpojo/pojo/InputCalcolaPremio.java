@@ -1,7 +1,5 @@
 package com.sample.complexpojo.pojo;
 
-import java.util.Date;
-
 /**
  * Classe pojo utilizzata nelle regole
  * 
@@ -10,12 +8,34 @@ import java.util.Date;
  */
 public class InputCalcolaPremio {
 
-	private int etaContraente = 0;
-	private double sconto = 0;
-	private int cavalliFiscali = 0;
-	
+	private DatiContraente datiContraente;
+	private int numeroGaranziePolizza = 0;
 
 	// risposta
-	 
+	private Sconto sconto;
+
+	public int getNumeroGaranziePolizza() {
+		return numeroGaranziePolizza;
+	}
+
+	public void setNumeroGaranziePolizza(int numeroGaranziePolizza) {
+		this.numeroGaranziePolizza = numeroGaranziePolizza;
+	}
+
+	public DatiContraente getDatiContraente() {
+		return datiContraente;
+	}
+
+	public void setDatiContraente(DatiContraente datiContraente) {
+		this.datiContraente = datiContraente;
+	}
+
+	public Sconto getSconto() {
+		return sconto;
+	}
+
+	public void setSconto(Sconto sconto) {
+		this.sconto = sconto;
+	}
 
 }
