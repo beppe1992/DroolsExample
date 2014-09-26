@@ -1,6 +1,7 @@
 package com.sample.complexpojo;
 
 import java.io.StringReader;
+import java.util.ArrayList;
 import java.util.Date;
 
 import org.drools.RuleBase;
@@ -15,10 +16,9 @@ import com.sample.complexpojo.pojo.DatiContraente;
 import com.sample.complexpojo.pojo.InputCalcolaPremio;
 import com.sample.complexpojo.pojo.Sconto;
 
-
 /**
- * Classe di esempio del framework Drools mediante utilizzando Decision Tables in
- * Excel
+ * Classe di esempio del framework Drools mediante utilizzando Decision Tables
+ * in Excel
  * 
  * @author valerio.martini
  * 
@@ -32,7 +32,8 @@ public class ApplicantTest {
 			// load up the rulebase
 			RuleBase ruleBase = readDecisionTable();
 
-			// Istanzio un WorkingMemory session per l'oggetto RuleBase precedentemente istanziato
+			// Istanzio un WorkingMemory session per l'oggetto RuleBase
+			// precedentemente istanziato
 			WorkingMemory workingMemory = ruleBase.newStatefulSession();
 
 			// Questa classe genera un file di log relativo al WorkingMemory
@@ -41,10 +42,15 @@ public class ApplicantTest {
 					workingMemory);
 			logger.setFileName("C:/drools-audit");
 
-			// Istanzio l'oggetto pojo che verrà utilizzato nelle regole
+			// Istanzio l'oggetto pojo che verrà utilizzato nelle regole (questo
+			// oggetto dara' sconto 15)
 			InputCalcolaPremio input = new InputCalcolaPremio();
 			input.setDatiContraente(new DatiContraente());
 			input.setSconto(new Sconto());
+			input.setGaranzie(new ArrayList<String>());
+			input.getGaranzie().add("RCA");
+			input.getGaranzie().add("FURTO E INCENDIO");
+			input.getGaranzie().add("KASKO");
 			input.getDatiContraente().setEtaContraente(40);
 			input.getDatiContraente().setNominativo("PIPPO");
 			input.getDatiContraente().setTipoCliente("DIPENDENTI");
@@ -56,6 +62,23 @@ public class ApplicantTest {
 			System.out.println(input.getSconto().getPercSconto());
 			System.out.println(input.getSconto().getTipoSconto());
 
+			// Istanzio l'oggetto pojo che verrà utilizzato nelle regole (questo
+			// oggetto dara' sconto 0 in quanto non e' presente la garanzia kasko)
+			input = new InputCalcolaPremio();
+			input.setDatiContraente(new DatiContraente());
+			input.setSconto(new Sconto());
+			input.setGaranzie(new ArrayList<String>());
+			input.getGaranzie().add("RCA");
+			input.getDatiContraente().setEtaContraente(40);
+			input.getDatiContraente().setNominativo("PIPPO");
+			input.getDatiContraente().setTipoCliente("DIPENDENTI");
+			input.setNumeroGaranziePolizza(2);
+
+			workingMemory.insert(input);
+			workingMemory.fireAllRules();
+
+			System.out.println(input.getSconto().getPercSconto());
+			System.out.println(input.getSconto().getTipoSconto());
 
 			logger.writeToDisk();
 
@@ -65,8 +88,9 @@ public class ApplicantTest {
 	}
 
 	private static RuleBase readDecisionTable() throws Exception {
-		// Questo oggetto gestisce XLS e CSV ed estrae dalle decision tables in esso definite 
-		//le regola
+		// Questo oggetto gestisce XLS e CSV ed estrae dalle decision tables in
+		// esso definite
+		// le regola
 		final SpreadsheetCompiler converter = new SpreadsheetCompiler();
 		final String drl = converter.compile("/ExampleTableDecision.xls",
 				InputType.XLS);
